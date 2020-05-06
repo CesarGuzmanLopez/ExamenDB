@@ -60,6 +60,38 @@ Route::group(["middleware"=>['auth','can:mod-usuarios'], 'prefix'=>'AdministrarU
 	Route::get("/agregarUsuario","Administrar_Usuarios\AdministrarUsuarios@agregarUsuario")->name("/AgregarUsuario");
 	Route::post("/agregarPost","Administrar_Usuarios\AdministrarUsuarios@agregarPost")->name("/agregarPost");
 });
-
-
+Route::group(["middleware"=>['auth'], 'prefix'=>'BD_UAM', 'as'=>'BD_UAM'],function(){
+	$Ta="Tarea\BD_UAM";
+	Route::get("/","$Ta@index")->name("/");
+	
+	Route::get("/Categorias","$Ta@Categorias")->name("/Categorias");
+	Route::post("/Categorias","$Ta@Categorias")->name("/Categoriaspost"); 
+	Route::delete("/Categorias/{id}","$Ta@Categorias")->name("/CategoriasDel");
+	Route::patch("/Categorias/{id}","$Ta@Categorias")->name("/CategoriasPatch");
+	
+	Route::get("/Provedores","$Ta@Provedores")->name("/Provedores");
+	Route::post("/Provedores","$Ta@Provedores")->name("/Provedorespost");
+	Route::delete("/Provedores/{id}","$Ta@Provedores")->name("/ProvedoresDel");
+	Route::patch("/Provedores/{id}","$Ta@Provedores")->name("/ProvedoresPatch");
+	
+	
+	Route::get("/Productos","$Ta@Productos")->name("/Productos");
+	Route::post("/Productos","$Ta@Productos")->name("/Productospost"); 
+	Route::delete("/Productos/{id}","$Ta@Productos")->name("/ProductosDel");
+	Route::patch("/Productos/{id}","$Ta@Productos")->name("/ProductosPatch");
+	
+	
+	Route::post("/Envios","$Ta@Envios")->name("/Envios");
+	
+	Route::get     ("/Pedidos","$Ta@Pedidos")->name("/Pedidos");
+	Route::post   ("/Pedidos","$Ta@Pedidos")->name("/Pedidospost");
+	Route::delete("/Pedidos{id}","$Ta@Pedidos")->name("/PedidosDel");
+	Route::patch ("/Pedidos{id}","$Ta@Pedidos")->name("/PedidosPatch");
+	
+	Route::get     ("/Clientes_Empleados","$Ta@Clientes_Empleados")->name("/Clientes_Empleados");
+	Route::post   ("/Clientes_Empleados","$Ta@Clientes_Empleados")->name("/Clientes_Empleadospost");
+	Route::delete("/Clientes_Empleados{id}","$Ta@Clientes_Empleados")->name("/Clientes_EmpleadosDel");
+	Route::patch ("/Clientes_Empleados{id}","$Ta@Clientes_Empleados")->name("/Clientes_EmpleadosPatch");
+	
+ }); 
 //Route::get('/home', 'HomeController@index')->name('home');//->middleware('role:web-developer');;
