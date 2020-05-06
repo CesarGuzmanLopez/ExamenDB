@@ -22,6 +22,7 @@
 		<tr>
 			<td >{{$categoria->Idcategoria}}</td><td >{{$categoria->nombrecategoria}}</td><td >{{$categoria->descripcion}}</td><td>
 			<form action="{{route('BD_UAM/CategoriasDel',$categoria->Idcategoria)}}" method="post">
+			
 				<input type="hidden" name="_token" value="{{csrf_token()}}">
 				<input type="hidden" name="_method" value="delete" />
 				<button type="submit">Eliminar</button>
